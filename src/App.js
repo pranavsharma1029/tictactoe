@@ -15,7 +15,7 @@ class App extends Component {
                 <div className="App">
                       <h1>Test</h1>   
                       
-                      <Button handleClick />   
+                      <Button/>   
                          
                 </div>
              );

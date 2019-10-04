@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
-
+import './button.css'
 
 class Button extends Component {
 
   state = 
-  {
-    
+  {    
     value:'x'
   }  
 
@@ -44,7 +43,7 @@ handleClick = (e) => {
 render(){
     return(
         <div>
-          <table>
+          <table class = "centered">
             <tr>
               <td><input type = "button" onClick = {this.handleClick} ></input></td>
               <td><input type = "button" onClick = {this.handleClick} ></input></td>
