@@ -7,7 +7,8 @@ class Button extends Component {
   {       
     value:'X',
     haswon:false,
-    winner:''
+    winner:'',
+    display:'block'
   }  
 
 
@@ -20,8 +21,7 @@ handleClick = (e) => {
      e.target.value = this.state.value;
      e.target.disabled = true;
      this.checkWinner(e);
-     this.setState
-          ({
+     this.setState({
                value:'O'
           })   
 
@@ -32,8 +32,7 @@ handleClick = (e) => {
     e.target.value = this.state.value;
     e.target.disabled = true;
     this.checkWinner(e);
-    this.setState
-        ({
+    this.setState({
             value:'X'
         })
   }   
@@ -56,8 +55,7 @@ checkWinner = (e) => {
             {
                     console.log('winner is '+ e.target.value);
                     
-                    this.setState
-                    ({
+                    this.setState({
                       winner:e.target.value,
                       haswon:true
                     })
@@ -66,12 +64,22 @@ checkWinner = (e) => {
                     //disabling the remaining buttons once a winner is decided
                     var allInputs = document.getElementsByTagName("input"); 
                     for(var i=0 ; i<allInputs.length ; i++)
+                      {
                         allInputs[i].setAttribute('disabled',true);
-
+                      }
+                    this.showWinner();  
             }
-
 }
 
+showWinner(){
+    var x = document.getElementById('winner');
+    
+    x.style.display = this.state.display;
+    
+    console.log(x.style.display)
+    console.log('won')  
+
+}
 
 
 
@@ -101,8 +109,8 @@ render(){
            <h1>Player {this.state.value}'s turn</h1>
           </div>
 
-          <div align = "center" display = "none">
-          <h1>Winner is {this.state.winner}</h1>
+          <div align = "center" id = "winner">
+          <h1>{this.state.winner} won!</h1>
           </div>
 
         </div>
