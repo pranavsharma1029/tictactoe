@@ -13,9 +13,9 @@ class App extends Component {
    {
       return (
                 <div className="App">
-                      <h1>Test</h1>   
-                      
-                      <Button/>   
+                      <h1 align  ="center">Test</h1>   
+                      <Button/>
+                      <div></div>   
                          
                 </div>
              );
