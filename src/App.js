@@ -6,6 +6,9 @@ import './App.css';
 
 class App extends Component {
 
+ reset = (e) => {
+   window.location.reload(); 
+ }  
  
 
   
@@ -15,7 +18,9 @@ class App extends Component {
                 <div className="App">
                       <h1 align  ="center">Test</h1>   
                       <Button/>
-                      <div></div>   
+                      <div align = "center">
+                         <button onClick = {this.reset}>Reset</button>
+                      </div>   
                          
                 </div>
              );

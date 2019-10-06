@@ -51,24 +51,24 @@ checkWinner = (e) => {
      ( (document.getElementById('1').value === document.getElementById('5').value) && (document.getElementById('1').value === document.getElementById('9').value) && (document.getElementById('1').value===e.target.value) ) || 
      ( (document.getElementById('3').value === document.getElementById('5').value) && (document.getElementById('3').value === document.getElementById('7').value) && (document.getElementById('3').value===e.target.value) )  
      ) 
-     //first two comparisons are to make sure all the row/column/diagonal values for the winning combinations are the same. All the blocks initially have the same value (nothing/null) and hence 
-     //checkwinner will always return true since all the values are the same. Hence making sure that block value is equal to e.target.value for atleast one of the blocks in each row/column/diagonal win condition ensures this doesnt happen 
-      {
-       console.log('winner is '+ e.target.value);
-       
-       this.setState
-       ({
-         winner:e.target.value,
-         haswon:true
-       })
-       console.log(this.state.winner);
+       //first two comparisons are to make sure all the row/column/diagonal values for the winning combinations are the same. All the blocks initially have the same value (nothing/null) and hence 
+       //checkwinner will always return true since all the values are the same. Hence making sure that block value is equal to e.target.value for atleast one of the blocks in each row/column/diagonal win condition ensures this doesnt happen 
+            {
+                    console.log('winner is '+ e.target.value);
+                    
+                    this.setState
+                    ({
+                      winner:e.target.value,
+                      haswon:true
+                    })
+                    console.log(this.state.winner);
 
-       //disabling the remaining buttons once a winner is decided
-       var allInputs = document.getElementsByTagName("input"); 
-       for(var i=0 ; i<allInputs.length ; i++)
-          allInputs[i].setAttribute('disabled',true);
+                    //disabling the remaining buttons once a winner is decided
+                    var allInputs = document.getElementsByTagName("input"); 
+                    for(var i=0 ; i<allInputs.length ; i++)
+                        allInputs[i].setAttribute('disabled',true);
 
-      }
+            }
 
 }
 
@@ -101,8 +101,8 @@ render(){
            <h1>Player {this.state.value}'s turn</h1>
           </div>
 
-          <div align = "center">
-           <h1>Winner is {this.state.winner}</h1>
+          <div align = "center" display = "none">
+          <h1>Winner is {this.state.winner}</h1>
           </div>
 
         </div>
