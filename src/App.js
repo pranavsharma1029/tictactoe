@@ -16,7 +16,7 @@ class App extends Component {
    {
       return (
                 <div className="App">
-                      <h1 align  ="center">Test</h1>   
+                      <h1 align  ="center">Tic Tac Toe</h1>   
                       <Button/>
                       <div align = "center">
                          <button onClick = {this.reset}>Reset</button>

@@ -3,38 +3,45 @@ import './button.css'
 
 class Button extends Component {
 
+  
   state = 
   {       
     value:'X',
     haswon:false,
     winner:'',
-    display:'block'
+    display:'block',
+    count:1
   }  
-
-
+ 
 handleClick = (e) => {
     
  if(this.state.value==='X')
    { 
      
-    
+     var temp = this.state.count;
      e.target.value = this.state.value;
      e.target.disabled = true;
      this.checkWinner(e);
+     this.checkDraw();
      this.setState({
-               value:'O'
+               value:'O',
+               count:temp+1
           })   
+      console.log(this.state.count);    
 
     }
   else
   {
-    
+    var temp = this.state.count;
     e.target.value = this.state.value;
     e.target.disabled = true;
     this.checkWinner(e);
+    this.checkDraw();
     this.setState({
-            value:'X'
+            value:'X',
+            count:temp+1
         })
+    console.log(this.state.count);    
   }   
 
 } 
@@ -72,14 +79,24 @@ checkWinner = (e) => {
 }
 
 showWinner(){
-    var x = document.getElementById('winner');
-    
-    x.style.display = this.state.display;
-    
+    var x = document.getElementById('winner');    
+    x.style.display = this.state.display;    
     console.log(x.style.display)
     console.log('won')  
-
 }
+
+checkDraw(){
+  
+  if((this.state.count===9)&&(this.state.haswon===false))
+     {
+      var x = document.getElementById('draw');    
+      x.style.display = this.state.display;    
+      console.log(x.style.display)
+      console.log('draw'); 
+     }
+  }
+
+
 
 
 
@@ -110,7 +127,11 @@ render(){
           </div>
 
           <div align = "center" id = "winner">
-          <h1>{this.state.winner} won!</h1>
+          <h1>Player {this.state.winner} won!</h1>
+          </div>
+
+          <div align = "center" id = "draw">
+          <h1>It's a draw!</h1>
           </div>
 
         </div>

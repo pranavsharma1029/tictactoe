@@ -35,3 +35,7 @@ button{
 #winner{
     display: none
 }
+
+#draw{
+    display: none
+}
