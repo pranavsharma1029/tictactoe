@@ -1,9 +1,6 @@
 import React,{Component} from 'react';
 import Button from './button.js'
 
-import './App.css';
-
-
 class App extends Component {
 
  reset = (e) => {
