@@ -13,7 +13,7 @@ class Button extends Component {
     count:1
   }  
  
-handleClick = (e) => {
+handleClick = async(e) =>  {
     
  if(this.state.value==='X')
    { 
@@ -21,9 +21,9 @@ handleClick = (e) => {
      var temp = this.state.count;
      e.target.value = this.state.value;
      e.target.disabled = true;
-     this.checkWinner(e);
-     this.checkDraw();
-     this.setState({
+     await this.checkWinner(e);
+     await this.checkDraw();
+     await this.setState({
                value:'O',
                count:temp+1
           })   
@@ -32,12 +32,12 @@ handleClick = (e) => {
     }
   else
   {
-    var temp = this.state.count;
+    temp = this.state.count;
     e.target.value = this.state.value;
     e.target.disabled = true;
-    this.checkWinner(e);
-    this.checkDraw();
-    this.setState({
+    await this.checkWinner(e);
+    await this.checkDraw();
+    await this.setState({
             value:'X',
             count:temp+1
         })
@@ -74,6 +74,7 @@ checkWinner = (e) => {
                       {
                         allInputs[i].setAttribute('disabled',true);
                       }
+                      
                     this.showWinner();  
             }
 }
@@ -91,11 +92,11 @@ checkDraw(){
      {
       var x = document.getElementById('draw');    
       x.style.display = this.state.display;    
-      console.log(x.style.display)
+      console.log(x.style.display);
       console.log('draw'); 
      }
-  }
-
+  
+}
 
 
 
