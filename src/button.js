@@ -12,7 +12,7 @@ class Button extends Component {
     display:'block',
     count:1,
     undoAvailable:false,
-    latestClick:''
+    latestClick:[]
   }  
  
 handleClick = async(e) =>  {
@@ -24,9 +24,10 @@ handleClick = async(e) =>  {
         await this.checkWinner(e);
         await this.checkDraw();
         await this.swapState();
-        this.setState({
+        await this.setState({
            count:temp+1,
-           latestClick:tempid        
+           latestClick:tempid,
+           undoAvailable:true        
         })
             
   }
@@ -98,10 +99,41 @@ checkDraw(){
   
 }
 
-undo = () => {
-  let x = this.state.latestClick;
-  document.getElementById(x);
-  console.log(x)
+undo = async() => {
+  if(this.state.count===1)
+        {
+          alert('Cannot undo on the first turn!')
+        }
+  
+  else if(this.state.haswon===true)
+        {
+          alert('Cannot undo after winnning!')
+        }
+  else if(this.state.count===10)
+        {
+          alert('Cannot undo the final move!')
+        }
+
+  else   {
+            if(this.state.undoAvailable===false)
+               {
+                 alert('You can only undo your own move!')
+               }
+            else {   
+                      let x = this.state.latestClick;
+                      document.getElementById(x).disabled = false;
+                      document.getElementById(x).value = '';
+                      this.swapState();
+                      let temp = this.state.count;
+                      this.setState({
+                      count:temp-1,
+                      undoAvailable:false
+                      })
+                  }
+                   
+         
+    }
+
 
 }
 
