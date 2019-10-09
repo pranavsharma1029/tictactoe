@@ -10,41 +10,41 @@ class Button extends Component {
     haswon:false,
     winner:'',
     display:'block',
-    count:1
+    count:1,
+    undoAvailable:false,
+    latestClick:''
   }  
  
 handleClick = async(e) =>  {
-    
- if(this.state.value==='X')
-   { 
-     
-     var temp = this.state.count;
-     e.target.value = this.state.value;
-     e.target.disabled = true;
-     await this.checkWinner(e);
-     await this.checkDraw();
-     await this.setState({
-               value:'O',
-               count:temp+1
-          })   
-      console.log(this.state.count);    
-
-    }
-  else
-  {
-    temp = this.state.count;
-    e.target.value = this.state.value;
-    e.target.disabled = true;
-    await this.checkWinner(e);
-    await this.checkDraw();
-    await this.setState({
-            value:'X',
-            count:temp+1
+        let temp,tempid; 
+        temp = this.state.count;
+        tempid = e.target.id; 
+        e.target.value = this.state.value;
+        e.target.disabled = true;
+        await this.checkWinner(e);
+        await this.checkDraw();
+        await this.swapState();
+        this.setState({
+           count:temp+1,
+           latestClick:tempid        
         })
-    console.log(this.state.count);    
-  }   
+            
+  }
+      
+    
 
-} 
+swapState = () => {
+
+      if(this.state.value==='X')
+          this.setState({
+            value:'O',
+          })
+      else
+          this.setState({
+            value:'X'
+          })    
+  
+}
 
 checkWinner = (e) => {
  if  (
@@ -98,6 +98,13 @@ checkDraw(){
   
 }
 
+undo = () => {
+  let x = this.state.latestClick;
+  document.getElementById(x);
+  console.log(x)
+
+}
+
 
 
 
@@ -133,6 +140,10 @@ render(){
 
           <div align = "center" id = "draw">
           <h1>It's a draw!</h1>
+          </div>
+
+          <div  align = "center">
+            <button onClick = {this.undo}>Undo</button>
           </div>
 
         </div>
