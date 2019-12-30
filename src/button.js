@@ -116,9 +116,9 @@ undo = async() => {
 
   else   {
             if(this.state.undoAvailable===false)
-               {
-                 alert('You can only undo your own move!')
-               }
+                    {
+                      alert('You can only undo your own move!')
+                    }
             else {   
                       let x = this.state.latestClick;
                       document.getElementById(x).disabled = false;
